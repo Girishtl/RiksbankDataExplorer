@@ -13,25 +13,18 @@ namespace Application.Service
             _riskbankAPIClient = riskbankAPIClient;
         }
 
-        public Task<monetary_policy_data> GetForecasts(string policy_round_name, string series)
-        {
-            var x = _riskbankAPIClient.GetForecastsData(policy_round_name, series);
+        public async Task<monetary_policy_data> GetForecasts(string policy_round_name, string series)
+            => await _riskbankAPIClient.GetForecastsData(policy_round_name, series);
 
-            return x;
-        }
 
-        public Task<policy_rounds> GetPolicyRounds()
-        {
-            var x = _riskbankAPIClient.GetPolicyRoundsData();
+        public async Task<policy_rounds> GetPolicyRounds()
+         => await _riskbankAPIClient.GetPolicyRoundsData();
 
-            return x;
-        }
+
+
 
         public async Task<Series> GetSeries()
-        {
-            var x = await _riskbankAPIClient.GetSeriesData();
+            => await _riskbankAPIClient.GetSeriesData();
 
-            return x;
-        }
     }
 }

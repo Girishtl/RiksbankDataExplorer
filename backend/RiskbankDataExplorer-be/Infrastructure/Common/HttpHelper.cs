@@ -15,16 +15,9 @@ namespace Infrastructure.Common
 
         public static async Task<T> GetDataAync<T>(string url)
         {
-
-
-            //var urls = "https://api.riksbank.se/monetary_policy_data/v1/forecasts/series_ids";
-            // Send GET request
             var response = await _client.GetAsync(url);
             response.EnsureSuccessStatusCode();
-            // Read raw JSON
             var json = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("RAW RESPONSE:"); Console.WriteLine(json);
-            // Deserialize
             return JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
 
